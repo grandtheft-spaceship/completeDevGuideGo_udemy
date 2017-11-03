@@ -1,0 +1,74 @@
+# Complete Dev Guide to Go (Golang) - Udemy
+
+## Environment Setup
+
+1. Install [Go]('https://goland.org/dl/') - *Runtime to build and execute Go programs*
+2. Install [VSCode]('https://code.visualstudio.com/') - *Code editor with one of the best Go integrations*
+3. Confirgure VSCode - *Install Golang extension*
+4. Write Code!
+
+## A Simple Start
+### Five Important Questions
+
+* These are 5 basic questions we can ask to get a better sense of what the `hello, world` program is doing
+1. How do we run the code in our project?
+  * `$ go run *file_name*`
+
+    | Go CLI |
+    | ------ |
+    | `$ go build` - Compiles a bunch of go source code files (This command creates an *executable*  |
+    | `$ go run` - Compiles and executes go files |
+    | `$ go fmt` - Formats all the code in each file in the current directory   |
+    | `$ go install` - Compiles and "installs" a package (Used to handle *dependecies) |
+    | `$ go get` - Downloads the raw source code of someone else's package (Used to handle *dependecies)   |          
+    | `$ go test` - Runs any tests associated with the current project    |  
+            
+2. What does `package main` mean?
+  * In Go, package == project == workspace
+  * A `package` is a collection of common source code files
+    * A `package` can have many files contained in it, each of them ending with the extension `.go`
+    * The only requirement of every file in a package is the first line of each file must declare which package it belongs to
+    * Two different types of packages
+        * **Executable**
+          * Generates a file that we can run
+          * Used primarily for doing something 
+        * **Reusable**
+          * Code used as "helpers"
+          * Good place to store reusable logic
+          * Similar to code dependencies or libraries
+          * How to know if you need to make an *executable* or *reusable* file?
+          * The name of the package you use determines whether or not your file is *executable* or *reusable* 
+      * `main` is specifically used to create an *executable* type package
+        * Anything other name used would create a *reusable* type package
+        * Anytime you create an *executable* type package, it must always contain a `func main()` inside of it
+3. What does `import "fmt"` mean?
+  * `import` keyword is used to access code from another package in the current package
+  * `fmt` is a standard library package that is included in Go by default
+    * *fmt* is short for **format**
+    * This library is used to print all sorts of information to the terminal
+  * By default, the `main` package the we create has NO access to the standard, default packages included with Go
+    * To gain access to the other packages from within our package, we use the `import` statement to form a link between the packages
+    * We can also `import` packages that are not a part of the default, standard library; packages authored by a 3rd party
+      * Link to documentation regarding Go's standard library [packages]('https://golang.org/pkg')
+4. What's that `func` thing?
+  * `func` is short for function
+    * They work very similarly to functions in other programming languages
+5. How is the `main.go` file organized?
+  * We are going to always use the exact same pattern when creating a file
+    * `package main` - Package declaration
+    * `import "fmt"` - Import other packages that we need
+    * `func main() {}` - Declare functions, tell Go to do things
+
+**NOTE:**
+  * You can access course diagrams [here]('https://github.com/StephenGrider/GoCasts/tree/master/diagrams')
+    * Open the folder containing the set of diagrams you want to edit
+    * Click on the ‘.xml’ file
+    * Click the ‘raw’ button
+    * Copy the URL
+    * Go to https://www.draw.io/
+    * On the ‘Save Diagrams To…’ window click ‘Decide later’ at the bottom
+    * Click ‘File’ -> ‘Import From’ -> ‘URL’
+    * Paste the link to the XML file
+    * Tada!
+
+
