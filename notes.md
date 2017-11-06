@@ -146,4 +146,44 @@ func newCard() string {
   * **NOTE:** 
     * Every function that returns a value must indicate what *type of value* it is returning
     * Files in the SAME package can freely call functions defined in other files.
+  
+### Slices and For Loops
 
+* Go has 2 basic data structures for handling *lists*
+  * **Array**
+    * Fixed length list of things
+  * **Slice** 
+    * An array that can grow or shrink
+  * Both *arrays* and *slices* must be **defined with a data tyoe**
+    * Every element within the list has to be of the same data type
+
+* Syntax for creating a new slice:
+```
+  cards := []string{}
+```
+  * `cards` is the variable that we will assign our slice to as the its value
+  * `[]string{}` declares that we are creating a slice, with type `string`
+    * All elements that we are inserting go within the `{}`
+  * To add elements into our slice
+  ```
+  exampleSlice = append(exampleSlice, desiredElement)
+  ```
+  * The `append()` does NOT modify the slice, it returns a new slice with the updated elements and reassigns the variable `cards` to the value of the new slice
+
+* How do we iterate over a slice?
+```
+for i, card := range cards {
+		fmt.Println(i, card)
+	}
+```
+  * `for` is the keyword to define that we are entering a *loop*
+  * `i` represents the index; you can name this anything you want, it does not need to be "i"
+  * `card` represents the current element in the iteration; again, this can be named anything you want
+  * `range cards` represents the slice and loops over each element
+  * `fmt.Println(i, card)` is run one time for each element in the slice
+  * The reason why we use the `:=` to instantiate a new card for every iteration of the `for` loop is because through every iteration, we are "throwing away" the previous index and instance that was declared
+
+* **NOTE:**
+  * By using the `for` loop in the way we just learned, you need to also print the `index` along with the actual element 
+    * If you try to just print the element, you'll throw an error
+  
