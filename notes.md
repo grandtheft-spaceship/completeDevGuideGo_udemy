@@ -71,4 +71,61 @@
     * Paste the link to the XML file
     * Tada!
 
+## Deeper Into Go
+
+* We are going to build a functional, deck of playing cards
+* The functions our package will include are:
+  * newDeck()
+    * Creates a list of playing cards. Essentially an array of strings
+  * print()
+    * Logs out the contents of a deck of playing cards
+  * shuffle()
+    * Shuffles all the cards in a deck
+  * deal()
+    * Creates a hand of cards
+  * saveToFile()
+    * Save a list of cards to a file on the local machine
+  * newDeckFromFile()
+    * Load a list of cards from the local machine
+
+### Variable Declarations
+
+```
+  var card string = "Ace of Spades"
+```
+  * `var` - keyword used to create a new **variable**
+  * `card` - name of the variable 
+  * `string` - only a **string** value will be assigned to this variable
+    * This is called **type declaration**
+  * `"Ace of Spades"` - value of the variable
+
+* **Go** is referred to as a *statically-typed language*
+  * Examples of **static** languages:
+    * C++
+    * Java
+    * Go
+  * Examples of **dynamic** languages:
+    * JavaScript
+    * Ruby
+    * Python
+
+* **Dynamically-typed languages** are languages where developers essentially do NOT care about what values are assigned to which variable
+  * You can redfine a specific variable different *types* of values 
+
+* *Note:* In VSCode, if you try to use `fmt` functionality without first declaring `import fmt`, VSCode will automatically input the import statement for you
+
+* Basic data types in Go:
+  * bool
+  * string
+  * int
+  * float64 
+
+* **NOTE:**
+  * You can define variables another way
+`	card := "Ace of Spades"`
+  * This is because the Go compiler can *infer* what we are trying to do with the variable `card` 
+  * ONLY use the `:=` syntax when **defining a new variable**
+    * To **reassign** a variable's value, you simply use the `=` operator
+  * ALSO a variable that is initialized AND assigned a value OUTSIDE of a function is not scoped to be accessed from INSIDE the function
+    * HOWEVER a variable that is initialized OUTSIDE of a function and later ASSIGNED a value from INSIDE the function is accessible from with the function
 
