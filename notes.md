@@ -128,4 +128,22 @@
     * To **reassign** a variable's value, you simply use the `=` operator
   * ALSO a variable that is initialized AND assigned a value OUTSIDE of a function is not scoped to be accessed from INSIDE the function
     * HOWEVER a variable that is initialized OUTSIDE of a function and later ASSIGNED a value from INSIDE the function is accessible from with the function
+  
+### Functions and Return Types
+
+```
+func newCard() string {
+	return "Five of Diamonds"
+}
+```
+* It is necesarry to let the Go compiler know that the function `newCard()` will have a return value of type string
+  * If we remove the `string` keyword, we get an error:
+  ```
+  too many arguments to return
+    have (string)
+    want ()
+  ```
+  * **NOTE:** 
+    * Every function that returns a value must indicate what *type of value* it is returning
+    * Files in the SAME package can freely call functions defined in other files.
 
