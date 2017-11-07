@@ -198,8 +198,8 @@ for i, card := range cards {
   * map
 * We can "extend" a **base type** and add some extra functionality to it
   * `type deck []string`
-    * Here, we are going to create a new *type*, called `deck` that will essentially be a slice of strings
-    * This tells Go we want to create an slice of strings and add a bunch of functions specifically made to work with it
+    * Here, we are going to create a new *type*, called `deck`, that will essentially be a `slice` of type `string`
+    * This tells Go we want to create a `slice` of type `string` and add a bunch of functions specifically made to work with it
 * Functions with `deck` as a *receiver*
   * A function with a receiver is like a *method* - a function that belongs to an *instance*
 * This is a common pattern that is used in a lot of Go programs
@@ -213,3 +213,15 @@ for i, card := range cards {
     * Code to automatically test a deck
 
 * **NOTE:** Every single file inside of a package must declare the package name on the first line at the top
+
+### Custom Type Declarations
+
+* To reiterate, we are going to create a new *type*, a `deck` type, which will be a `slice` of type `string`, so we can add functionality specific to the `deck` type
+  * This is called **type declaration**
+* By default, our `deck` type will have all the functionality of a `slice` of type `string`; similar to inheritance from Object-Oriented programmming
+* Because of this, we can replace `[]string` in our code to simply say `deck` and it should function normally
+* Because we are using code written in one file, `deck.go`, and running it another file, `main.go`, when we are executing the program, we need to run both files 
+  ```
+  $ go run main.go deck.go
+  ```
+* This *compiles* both files and executes the code in both of them
