@@ -184,6 +184,32 @@ for i, card := range cards {
   * The reason why we use the `:=` to instantiate a new card for every iteration of the `for` loop is because through every iteration, we are "throwing away" the previous index and instance that was declared
 
 * **NOTE:**
-  * By using the `for` loop in the way we just learned, you need to also print the `index` along with the actual element 
+  * If using the `for` loop in the way we just learned, you need to also print the `index` along with the actual element 
     * If you try to just print the element, you'll throw an error
-  
+
+### OO Approach vs Go Approach
+
+* Go is NOT an object-oriented language; so there is no idea of *classes*
+* Base Data Types in Go
+  * string
+  * integer
+  * float
+  * array
+  * map
+* We can "extend" a **base type** and add some extra functionality to it
+  * `type deck []string`
+    * Here, we are going to create a new *type*, called `deck` that will essentially be a slice of strings
+    * This tells Go we want to create an slice of strings and add a bunch of functions specifically made to work with it
+* Functions with `deck` as a *receiver*
+  * A function with a receiver is like a *method* - a function that belongs to an *instance*
+* This is a common pattern that is used in a lot of Go programs
+
+* Notes on File Structure:
+  * `main.go`
+    * Code to create and manipulate a deck
+  * `deck.go`
+    * Code that describes what a deck is and how it works
+  * `deck_test.go`
+    * Code to automatically test a deck
+
+* **NOTE:** Every single file inside of a package must declare the package name on the first line at the top
