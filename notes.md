@@ -248,3 +248,32 @@ for i, card := range cards {
     * In Go, we don't use keywords such as `this` or `self`; you always refer to the receiver as the actual thing that it is
   * By convention, the **receiver** is always referred to with a *1 or 2 letter abbreviation of that matches the type of the receiver*
   * This is a common pattern that is widely used in the Go language
+
+### Creating a New Deck
+
+* Remember, in Go, whenever you want a function to return a value, you must declare the *type* of the value you are expecting to be returned
+* The plan for creating a new deck:
+  1. Create an empty deck
+  2. Create a list of all possible *suits*
+  3. Create a list of all possible *card values*
+  4. Create 2 nested `for` loops for both the list of suits and list of card values
+  5. Add a new card for every *value of suit* to the deck
+* This will help us avoid having to manually type all 52 cards of the deck
+* *Go is vanilla compared to other languages and a lot of concepts and patterns are done in similar ways in Go*
+```
+	for i, suit := range cardSuits {
+		for j, value := range cardValues {
+			cards = append(cards, value+" of "+suit)
+		}
+	}
+	return cards
+}
+```
+* **NOTE:**
+  * If you save the code above as is, an error will pop up informing that we created the variables `i` and `j` but did not actually use it in our code
+    * In Go, whenever we have some variable that we do not actually need to use, we can replace it with an `_`
+    * This lets Go know that we understand there should be a variable in that place, but we don't want to use it
+
+
+
+
