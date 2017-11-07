@@ -225,3 +225,26 @@ for i, card := range cards {
   $ go run main.go deck.go
   ```
 * This *compiles* both files and executes the code in both of them
+
+### Receiver Functions
+```
+  func (d deck) print() {
+    for i, card := range d {
+      fmt.Println(i, card)
+    }
+  }
+```
+  * `(d deck)` - This syntax is called a **receiver**
+  * The entire thing is referred to as a *receiver on a function*
+  * For this example, the *receiver* is of *type* `deck` and the function's name is `print()`
+  * This makes it so ANY variable of *type* `deck` now gets access to the `print()` method
+  * *The receiver sets up methods on variables that are created*
+```
+(d deck)
+```
+  * `d` refers to the actual copy, or **instance**, of the *deck* we're working on
+  * `deck` allows ANY variable of *type* `deck`to have access to the `print()` method
+  * Compared to an object-oriented language, `d` is similar to keywords such as `this` or `self`
+    * In Go, we don't use keywords such as `this` or `self`; you always refer to the receiver as the actual thing that it is
+  * By convention, the **receiver** is always referred to with a *1 or 2 letter abbreviation of that matches the type of the receiver*
+  * This is a common pattern that is widely used in the Go language
