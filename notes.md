@@ -309,4 +309,23 @@ for i, card := range cards {
 
   ```
 
+### Multiple Return Values
+
+* When writing our function, `deal()`, we need to write out the *types* for each argument
+* This means that our `deal()` function can only take arguments of *type* `deck` and *type* `int`
+* `d` and `handSize` are the variable names we use to reference those values within the function
+  * Again, it is by convention that we use the abbreviated `d` to reference the *deck object* of *type* `deck`
+* Because we know want to return 2 separate slices, we have to annotate both *return types* of both elements are want to return
+```
+func deal(d deck, handSize int) (deck, deck) {
+    return d[:handSize], d[handSize:]
+}
+```
+* The next thing to work out is capturing both return values and storing them in their own variables
+  * We can do this with some syntax
+```
+hand, remainingCards := deal(cards, 5)
+```
+* **NOTE:** 
+  * After calling our `deal()` function, it is important to note that the original `cards` variable DOES NOT change or get modified. We created two new references that point at subsections of the 'cards' slice. We never directly modified the slice that 'cards' is pointing at.
 
