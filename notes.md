@@ -274,6 +274,39 @@ for i, card := range cards {
     * In Go, whenever we have some variable that we do not actually need to use, we can replace it with an `_`
     * This lets Go know that we understand there should be a variable in that place, but we don't want to use it
 
+### Slice Range Syntax
 
+* For the `deal()` method, each *hand* that is being dealt out will still be of *type* `deck`
+  * This means we are going to just be splitting up our `deck` slice into smaller slices
+* Breakdown on **slices:**
+  * Slices are **zerod-indexed**
+  * To access specific elements, the syntax is similar to other languages
+    ```
+    examlpleSlice[1]
+    ```
+* For the `deal()` method we are creating, we want to take the existing slice and select a **range** of elements to create a new slice
+  * Go has a *helper* for us to do this
+  ```
+  exampleSlice[startIndexIncluding:upToNotIncluding]
+  ```
+  * Example:
+  ```
+  fruits := ["apple", "banana", "orange", "guava"]
+  fruits[0:2]
+  => ["apple", "banana"]
+  ```
+  * **OPTIONALLY**
+    * You can leave off numbers on either side of the colon to have Go infer that we automatically want to start from the beginning OR go up to the end of the slice
+  ```
+  fruits := ["apple", "banana", "orange", "guava"]
+  fruits[:2]
+  => ["apple", "banana"]
+
+  //OR
+
+  fruits[2:]
+  => ["orange", "guava"]
+
+  ```
 
 
