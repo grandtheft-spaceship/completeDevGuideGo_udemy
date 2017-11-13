@@ -329,3 +329,54 @@ hand, remainingCards := deal(cards, 5)
 * **NOTE:** 
   * After calling our `deal()` function, it is important to note that the original `cards` variable DOES NOT change or get modified. We created two new references that point at subsections of the 'cards' slice. We never directly modified the slice that 'cards' is pointing at.
 
+### Byte Slices
+
+* `saveToFile()` is a function where we are going to save a copy of the current deck to our local hardDrive
+* `newDeckFromFile()` is a function that will load the file saved on the hard drive and create a new deck
+* Whenever we want to work with the underlying hardware or operating system that our program is running on, it's best to make use of Go's standard library of [packages]('https://golang.org/pkg/')
+* [ioutil]('https://golang.org/pkg/io/ioutil/') is a package that implements common operations for working with the hard drive on our local machine
+  * The function we are specifically looking at is `WriteFile()`
+  ```
+  func WriteFile(filename string, data []byte, perm os.FileMode) error
+  ```
+  * Looking at the argument list, we can see that we have an argument `data` and it is of *type* `[]byte`
+    * When we see the `[]`, we should be thinking of a `slice`
+    * This is referred to as a `slice` of *type* `byte`, or a **byte slice**
+  * `perm os.FileMode` - `perm` is short for *permissions* and refers to the permissions used to create the file
+
+* **What is a byte slice?**
+  ```
+  "Hi there!" // string 
+  => [72 105 32 116 104 101 114 101 33] // byte slice
+  ```
+  * Whenever you hear the term *byte slice*, you can automatically think of *string*
+  * Every element in the *byte slice* refers to an **ascii character code** 
+  * [ASCII]('http://www.asciitable.com/')
+
+### Deck to String
+
+* *Type conversion* is where you take a *type* of value and turn it to another *type*
+```
+[]byte("Hi there!")
+```
+* `[]byte` refers to our *desired type*
+* `"Hi there!"` is the value we have and whose *type* we want to change to a *byte*
+* To create a *byte slice*:
+  * We'll take our `deck`, which is really just a `slice` of *type* `string`, combine all the strings into one string, and turn that string into the *byte slice*
+    * First, we need to create a helper function, `toString()`, to turn a `deck` into a single `string`
+
+### Joining a Slice of Strings
+
+* To combine our deck into a single string, we can use the [`Join()`]('https://golang.org/pkg/strings/#Join') function built into the standard library
+  * To use the `Join()` function, you first need to `import` the strings package
+  * **Syntax** for *importing* multiple packages
+  ```
+    import (
+    "fmt"
+    "strings"
+  )
+  ```
+
+### Saving Data to the Hard Drive
+
+* 
