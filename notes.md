@@ -401,3 +401,8 @@ func (d deck) saveToFile(filename string) error {
         * "If something goes wrong here, what do I really want to happen?"
 * We can quit our program entirely by using the [os](https://golang.org/pkg/os/) package
   * In the `os` package, we will use the [Exit()](https://golang.org/pkg/os/#Exit) function
+
+### Error Handling
+
+* To convert our *byte slice* back into a `deck`, we can look in the [strings](https://golang.org/pkg/strings/) package for a function named [Split()](https://golang.org/pkg/strings/#Split)
+  * Works similarily like `Join()`
