@@ -379,4 +379,25 @@ hand, remainingCards := deal(cards, 5)
 
 ### Saving Data to the Hard Drive
 
-* 
+```
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+}
+```
+  * We use `error` as a *return* value type because that is what is going to happen with the `WriteFile()` function 
+  * `0666` is a standard *permissions* code
+
+### Reading From the Hard Drive
+
+* For our `newDeckFromFile()` function, we are going to use the [`ReadFile()`]('https://golang.org/pkg/io/ioutil/#example_ReadFile') function from the `ioutil` standard libary package
+  * We want to be able to specify the name of the file to open
+  * We are going to take the *byte slice* and split the elements from a single string back into a `deck`
+* The `error` object is a value of *type* `error`
+  * If something went wrong during the function call, the `error` object would be be populated with an actual value 
+  * If everything was *successful*, the value of the `error` object would be `nil`
+    * In Go, if there is an `error` object being written, usually you would add an `if` statement to check if it has an actual value or if it is `nil`
+    * *Error handling* can be a little tricky because it depends on the specific error that occured
+      * You can ask yourself this common sense question when trying to figure out how to handle an error:
+        * "If something goes wrong here, what do I really want to happen?"
+* We can quit our program entirely by using the [os](https://golang.org/pkg/os/) package
+  * In the `os` package, we will use the [Exit()](https://golang.org/pkg/os/#Exit) function
