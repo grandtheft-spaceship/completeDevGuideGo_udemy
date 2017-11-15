@@ -406,3 +406,30 @@ func (d deck) saveToFile(filename string) error {
 
 * To convert our *byte slice* back into a `deck`, we can look in the [strings](https://golang.org/pkg/strings/) package for a function named [Split()](https://golang.org/pkg/strings/#Split)
   * Works similarily like `Join()`
+
+### Shuffling a Deck
+
+* To manually *shuffle* through our deck, we are going to **loop through our deck one time**
+* At every interval, we will **generate a random number between 0 and `len(cards) - 1`**
+* Then, we'll **swap the current card and the card at `cards[randomNumber]`**
+* To generate a *random number*, we can look inside the [Math](https://golang.org/pkg/math/)  package, find the [rand](https://golang.org/pkg/math/rand/) sub-package, and use the `Intn()` function
+  * We pass the `Intn()` function a number and it will generate a random number between 0 and the number that we passed in
+
+### Random Number Generator
+
+* The way we initially wrote the `newPosition` logic randomizes the shuffle exactly the same every time
+* This is because `rand.Intn()` is referred to as a **pseudo-random generator**
+  * Go, by default, uses a random number generator that depends on a **seed value**
+  * The **seed-value** is the *source of randomness*
+  * By utilizing the same seed every time, the **generator** produces the same sequence 
+  * To fix this, we need to *generate a new seed value* to truly randomize the sequence
+
+* Looking through the [rand](https://golang.org/pkg/math/rand/#Int) docs, we see documentation regarding the *type* `Rand`
+  * The *type* `Rand` is defined as a *source of random numbers*
+  * By using creating a value of type `Rand`, we can *specifcy the seed* 
+  * To utilize the `New()` function for *type* `Rand`
+    * Create a new `int64` > `Source` > `Rand`
+      * For the value of type `int64`
+        * [Time](https://golang.org/pkg/time/) package > [`Now()`](https://golang.org/pkg/time/#Now) > [type `Time`](https://golang.org/pkg/time/#Time) > `UnixNano()` function
+          * This function returns a value of type `int64`
+          * The function will take the current time and return the value as a type `int64`
