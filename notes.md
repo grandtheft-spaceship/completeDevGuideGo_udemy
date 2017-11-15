@@ -433,3 +433,66 @@ func (d deck) saveToFile(filename string) error {
         * [Time](https://golang.org/pkg/time/) package > [`Now()`](https://golang.org/pkg/time/#Now) > [type `Time`](https://golang.org/pkg/time/#Time) > `UnixNano()` function
           * This function returns a value of type `int64`
           * The function will take the current time and return the value as a type `int64`
+
+### Testing With Go
+
+* Go testing is **NOT** like RSpec, Mocha, Jasmine, Selenium, etc...
+  * Unlike other testing frameworks, Go provides a small interface; only a small set of functions
+  * In practice, it's really using regular Go code to test 
+* To make a test, creating a new file which ends in `_test.go`
+```
+deck_test.go
+```
+* To run all tests in a package:
+```
+$ go test
+```
+* NOTE: Even test files require that you specify the package name it belongs to at the top of the file
+
+### Writing Useful Tests
+
+* Deciding What To Test:
+  * For `newDeck()`:
+    * Verify length of `deck`
+    * Verify the value of first card // It should always be the `"Ace of Spades"`
+    * Verify the value of last card // It should always be the `"King of Clubs"`
+* When creating a test for a function, we create a *new function* within the *test file* with the name **Test** and the function name
+  * Example:
+  ```
+  // in deck.go
+  func newDeck() {
+    // logic here
+  }
+  // inside deck_test.go
+  func TestNewDeck() {
+    // logic to verify deck length
+    // logic to verify value of first card
+    // logic to verify value of last card
+  }
+  ```
+* **Test Handler** - `t *testing.T`
+```
+func TestNewDeck(t *testing.T)
+```
+
+* **Formatted string**
+```
+t.Errorf("Expected deck length of 52, but got %v", len(d))
+```
+* We are *injecting* the value of `len(d)` where the placeholder `%v` is at in the string
+
+### Testing File I/O
+
+* **EDGE CASE**
+  * Create a deck > Save to a file > File created! > Attempt to load file > Crash!
+* **NOTE**
+  * When writing tests with Go, it is important to *manually take care of clean-up*; **remove the temporary testing file that gets created**
+* Testing `saveToDeck()` and `newDeckFromFile()`
+  1. Delete any files in current working directory with the name "_decktesting"
+  2. Create a deck
+  3. Save a file; `_decktesting`
+  4. Load from file
+  5. Assert deck length
+  6. Delete any files in current working directory with the name "_decktesting"
+* To delete a file, check [os](https://golang.org/pkg/os/) package and [Remove()](https://golang.org/pkg/os/#Remove) function
+* When testing, it is important to make tests fail at least 1 time to check for false positives
