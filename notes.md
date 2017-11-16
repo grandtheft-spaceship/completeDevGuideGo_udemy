@@ -560,3 +560,26 @@ var alex person
   alex.firstName = "Alex"    // Updates firstName property
   alex.lastName = "Anderson" // Updates lastName property
   ```
+### Embedding Structs
+
+* Go provides the ability to *embed on struct inside of another*
+* Example: 
+  * A `struct` of *type* `person` can have the following properties
+    * `firstName` which is of *type* `string`
+    * `lastName` which is of *type* `string`
+    * `contact` which is of *type* `contactInfo`
+  * And `contact` is actually a `struct` of *type* `contactInfo` with the following properties
+    * `email` which is of *type* `string`
+    * `zip` which is of *type* `int`
+  ```
+  	alex := person {
+		firstName: "Alex",
+		lastName: "Anderson",
+		contact: contactInfo{
+			email: "aanderson@gmail.com",
+			zip: 12345,
+		  },
+	  }
+  ```
+  * When using the `{}` syntax for *creating an instance*, we DO need to use commas
+  * When declaring a *multi-line structure*, every single line *MUST HAVE a comma* - even the last property declaration
