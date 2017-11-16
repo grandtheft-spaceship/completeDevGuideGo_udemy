@@ -531,3 +531,32 @@ type person struct { // Creates a new type, "person", that is really of type "st
 	lastName string // Last name property for type "person"
 }
 ```
+
+### Declaring Structs
+
+* When you create a variable in Go and you DO NOT assign it a value, Go *assigns the variable a* **zero value** *to each of the properties of the struct
+```
+var alex person 
+```
+* Zero Values in Go:
+  * `string` == `""`
+  * `int` == `0`
+  * `float` == `0`
+  * `bool` == `false`
+* **NOTE**
+  ```
+  fmt.Printf("%+v", alex)
+  ```
+  * `Printf()` is another type of log statement used for *string interpolation*
+  * Using `%+v` will log out the property names along with its value
+  * SUMMARY:
+    * There are 3 different ways for *declaring a struct*
+  ```
+  alex := person{"Alex", "Anderson"} // Relies on order of definition of fields for assignment // NOT RECOMMENDED WAY
+
+  alex := person{firstName: "Alex", lastName: "Anderson"} // Another way for defining a struct // MORE RELIABLE
+
+  var alex person            // Third way to declare a new struct // Properties will be of "zero value"
+  alex.firstName = "Alex"    // Updates firstName property
+  alex.lastName = "Anderson" // Updates lastName property
+  ```
