@@ -496,3 +496,16 @@ t.Errorf("Expected deck length of 52, but got %v", len(d))
   6. Delete any files in current working directory with the name "_decktesting"
 * To delete a file, check [os](https://golang.org/pkg/os/) package and [Remove()](https://golang.org/pkg/os/#Remove) function
 * When testing, it is important to make tests fail at least 1 time to check for false positives
+
+### Project Review
+
+* For every file created, we list the `package` name that we are working with
+* We `import` packages we need to use for additonal functionality
+  * In VSCode, packages automatically get added to the import list for us when using their code
+* We can create custom *types* 
+  * They are essentially an abstraction from the basic data types found in Go - for example, the `deck` type we created is essentially a *slice of type string* - but we were then able to add additional functionality that is specific to our `deck` type
+* We create *receiver functions* - or a *function that accepts a receiver* - which essentially allows us to *call that specific function on any value created of the same type*
+* **Slices** can thought of or accessed similar to *arrays* used in other languages
+  * But there are some additional behaviors particular to *slices*:
+    * Able to select a range within a slice simply by using a `:`
+* 
