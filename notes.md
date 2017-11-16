@@ -520,3 +520,14 @@ t.Errorf("Expected deck length of 52, but got %v", len(d))
   * For the card example, we could have created a `Struct` of *type* `card` that has two different *properties* - a `suit` of *type* `string` and a `value` of *type* `string`
     * You can think of a `Struct` as a *plain JavaScript object*
     * You can also think of a `Struct` as a *Ruby hash*
+
+### Defining Structs
+
+* When first creating a `struct`, we need to *define all the properties that `struct` might have
+* When defining properties for a `struct`, you DO NOT need to use any semicolons or commas, etc, to separate properties
+```
+type person struct { // Creates a new type, "person", that is really of type "struct"
+	firstName string // First name property for type "person"
+	lastName string // Last name property for type "person"
+}
+```
