@@ -508,4 +508,15 @@ t.Errorf("Expected deck length of 52, but got %v", len(d))
 * **Slices** can thought of or accessed similar to *arrays* used in other languages
   * But there are some additional behaviors particular to *slices*:
     * Able to select a range within a slice simply by using a `:`
-* 
+
+## Organizing Data with Structs
+### Structs in Go
+
+* In the `deck` project, we used *strings* to represent each card
+  * This is problematic if we considered *using the cards in a more functional way*; i.e. playing a game of poker, etc.
+    * We would have to use *string manipulation* to figure out the value or suit of each card
+* To fix this issue, we could have used a *data structure* called a `Struct`
+  * A `Struct` is a data structure that represents a *collection of different properties that are related together or have some type of common purpose*
+  * For the card example, we could have created a `Struct` of *type* `card` that has two different *properties* - a `suit` of *type* `string` and a `value` of *type* `string`
+    * You can think of a `Struct` as a *plain JavaScript object*
+    * You can also think of a `Struct` as a *Ruby hash*
