@@ -685,3 +685,13 @@ func updateSlice(s []string) {
   * `channels`
   * `pointers`
   * `functions`
+
+## Maps
+### What is a Map?
+
+* A **map** is a collection of **key-value** pairs
+  * You can think of it similarily like a *hash in Ruby* or an *object* in JavaScript
+* Both `keys` and `values` are **statically-typed**
+  * This means that all the **keys** must be the **same type**
+  * Also, all the **values** must be the **same type**
+    * However, the **keys and values can be different types**
