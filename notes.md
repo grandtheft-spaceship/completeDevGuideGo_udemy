@@ -597,3 +597,91 @@ var alex person
   * Go is referred to as a **pass by value language**
     * **Pass by value** means that whenever we pass some value into a function, Go will take that value - or *struct* -, copy all of the data in that struct and then place in into a *new box in the computer's memory*
       * So, in our `updateName()` function, we DID NOT update the original struct of `alex`, we ONLY updated the **copy that was made for that particular function call**
+
+### Structs With Pointers
+
+* To fix the issue with have with *pass by value*, we can use **pointers**
+
+### Pointer Operations
+
+* `&variableName` - The `&` is an *operator* that **gets the memory address** of the value the `variableName` is pointing at
+  * This is NOT a direct reference to the struct; but a *reference to the memory address of the struct*
+* `*pointer` - The `*` is an *operator* that gets the value the memory address, or **pointer**, is referencing
+  * So, in the updated `updateName()` function, `pointerToPerson` refers to the *memory address* that `alex` is stored at
+* **NOTE:**
+  * `*person` - This is a **type description**; it means we're working with a *pointer to a value of type person*
+    * When used with a *type*, the `*` should NOT be thought of as an operator but as a *type description*
+    * Our `updateName()` function can ONLY be called with a receiver of a *type* of **pointer** to a `person`
+  * `*pointerToPerson` - This is an **operator**; it means we want to *manipulate the value the pointer is referencing*
+    * We take the memory address that is being referenced and retreives the actual value that is stored at that address
+* **SUMMARY**
+  * `*variableName` - Turns *address* into a *value*
+  * `&variableName` - Turns *value* into an *address*
+  * `*typeName` - *Type declaration* saying we are looking for a *pointer of typeName*
+
+### Pointer Shortcut
+
+* Go allows us to take a shortcut when using *pointers* by allowing us to write *receiver functions*: 
+  * If we use a variable of a specific type and our receiver takes a **pointer** to a value of that same type, Go will automatically turn that variable into a pointer
+
+### Gotchas With Pointers
+```
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	mySlice := []string{"Hi", "There", "How", "Are", "You"}
+	
+	updateSlice(mySlice)
+	
+	fmt.Println(mySlice)
+
+}
+
+func updateSlice(s []string) {
+	s[0] = "Bye"
+}
+
+=> [Bye There How Are You]
+```
+* When working with **slices**, the `updateSlice()` changed the value of the first element in our slice WITHOUT using a *pointer*
+
+### Reference vs Value Types
+
+* Arrays in Go
+  * Primitive Data Structure
+  * Can't be resized
+  * Rarely used directly
+* Slices in Go
+  * Can grow and shrink
+  * Used 99% of the time for lists of elements
+* *Internally*, when we create a slice, Go creates 2 separate data structures, a **slice** and an **array**
+  * The **slice** is a data structure that has 3 elements inside it:
+    1. A pointer to the **head**
+      * Points to the underlying *array* that represents the *actual list of elements*
+    2. A **capacity** number
+      * How many elements it *can contain*
+    3. A **length** number
+      * How many elements it *currently contains*
+  * In your machine, the *slice* is stored in one address in memory and the *array* is stored in another address in memory
+    * NOTE: The `mySlice` variable is *NOT pointing at the actual array that contains the elements*
+      * `mySlice` returns the *slice data structure*
+* So, when we call the `updateSlice()` function, Go still behaves as a *pass by value* language
+  * It makes a copy of the *slice data structure*
+    * But the copy of the slice data structure still points to the original array in memory
+
+* Value Types - *Use pointers to change these things in a function*
+  * `int`
+  * `float`
+  * `string`
+  * `bool`
+  * `struct`
+* Reference Types - *DO NOT use pointers to change these things in a function*
+  * `slices`
+  * `maps`
+  * `channels`
+  * `pointers`
+  * `functions`

@@ -35,15 +35,17 @@ func main() {
 		},
 	}
 	// fmt.Println(alex)
-	alex.print()
-	alex.updateName("Alejandro")
-	alex.print() // Run this code and you'll see that firstName property did not update
+	// alex.print()
+	// alexPointer := &alex                // Finds the memory address of alex and stores it in alexPointer
+
+	alex.updateName("Alejandro") // The updateName() function will still work because Go automatically converts alex into alexPointer for us in the updateName function
+	alex.print()                 // Run this code and you'll see that firstName property did not update
+}
+
+func (pointerToPerson *person) updateName(newFirstName string) { // *person is a type description - it means we're working with a pointer to a person
+	(*pointerToPerson).firstName = newFirstName
 }
 
 func (p person) print() {
 	fmt.Printf("%+v", p)
-}
-
-func (p person) updateName(newFirstName string) {
-	p.firstName = newFirstName
 }
