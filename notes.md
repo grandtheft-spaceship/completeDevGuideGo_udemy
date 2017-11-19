@@ -695,3 +695,16 @@ func updateSlice(s []string) {
   * This means that all the **keys** must be the **same type**
   * Also, all the **values** must be the **same type**
     * However, the **keys and values can be different types**
+
+### Manipulating Maps
+
+* The **zero-value** of a map is just an *empty map*
+* To add values to a map, we can use **square-brackets syntax**
+```
+mapName[key] = value
+```
+* Maps DOES NOT allow **dot syntax**
+```
+mapName.key = value
+```
+* This is because all the keys are **values of a specific type** NOT variables
