@@ -589,3 +589,11 @@ var alex person
   * We can set up functions that take a receiver with structs
     * This allows any *instances* created from a struct to have similar functionality and behavior
   
+  ### Pass By Value
+
+  * How **RAM**, or memory, works on a machine:
+    * Memory on a local machine can be thought of little boxes where each box in the computer's memory can store some data and each of those boxes has a discrete address
+      * When your program wants to retreive data from the computer's memory, it finds the data according to that address
+  * Go is referred to as a **pass by value language**
+    * **Pass by value** means that whenever we pass some value into a function, Go will take that value - or *struct* -, copy all of the data in that struct and then place in into a *new box in the computer's memory*
+      * So, in our `updateName()` function, we DID NOT update the original struct of `alex`, we ONLY updated the **copy that was made for that particular function call**
