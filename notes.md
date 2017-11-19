@@ -708,3 +708,17 @@ mapName[key] = value
 mapName.key = value
 ```
 * This is because all the keys are **values of a specific type** NOT variables
+
+### Iterating Over Maps
+```
+func printMap(c map[string]string) {
+	for color, hex := range c {
+		
+	}
+}
+```
+* `c` - the argument name
+* `map[string]string` - *type* of the argument
+* `color` - represents the **key** for each iteration
+* `hex` - represents the **value** for each iteration
+
