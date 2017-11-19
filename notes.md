@@ -583,3 +583,9 @@ var alex person
   ```
   * When using the `{}` syntax for *creating an instance*, we DO need to use commas
   * When declaring a *multi-line structure*, every single line *MUST HAVE a comma* - even the last property declaration
+
+  ### Structs with Receiver Functions
+
+  * We can set up functions that take a receiver with structs
+    * This allows any *instances* created from a struct to have similar functionality and behavior
+  
