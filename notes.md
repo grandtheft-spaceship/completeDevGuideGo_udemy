@@ -722,3 +722,24 @@ func printMap(c map[string]string) {
 * `color` - represents the **key** for each iteration
 * `hex` - represents the **value** for each iteration
 
+### Differences Between Maps and Structs
+
+* **Map**
+  * All keys must be the same type
+  * All values must be the same type
+  * Keys are indexed - we can iterate over them
+  * Used to represent a collection of related properties
+  * Don't need to know all the keys at compile time
+    * Able to add/remove properties at anytime
+  * **Reference Type**
+
+* **Struct**
+  * Values can be different types
+  * Keys don't support indexing
+    * You cannot iterate through all the different properties of a struct
+  * You need to know all the different fields at compile time
+    * Cannot add/remove properties freely
+  * Used to represent a "thing" with a lot of different properties
+  * **Value Type**
+
+
