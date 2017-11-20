@@ -757,3 +757,22 @@ func printMap(c map[string]string) {
 
 **LOOK AT CODE**
 
+### Interfaces in Practice
+```
+type bot interface { // 
+	getGreeting() string
+}
+
+func printGreeting(b bot) {
+	fmt.Println(b.getGreeting())
+}
+```
+  * Layout for defining an **interface**
+  * First, we create a new custom *type* called `bot` that is of *type* `interface`
+    * `bot` is used for the example here to layout a more generic version of `englishBot` and `spanishBot`
+  * Inside of the definition for the custom *type* `bot`, we define a function called `getGreeting()` that returns a `string`
+    * By puttiing this function within the `bot` `interface`, we are saying that ***any *type* defined within the program that also has a `getGreeting()` function AND also returns a value of *type* `string`, they NOW can also be defined as *type* `bot`**
+  * Lastly, we define the function `printGreeting()` that takes an argument of *type* `bot`
+    * Since the `bot` `interface` allows other *types* defined in the program to ALSO be considered as *type* `bot`, all the other *objects* also have access to the `printGreeting()` function
+
+* **SUMMARY:** we use **interfaces** to *define a method set or function set* 
