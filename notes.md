@@ -750,5 +750,10 @@ func printMap(c map[string]string) {
   * Every function has to specify what type the *type of its arguments and/or its receiver* 
 * Does that mean:
   * **Every function we ever write has to be rewritten to accomodate different types even if the logic is identical?**
+* This is a small part of the problems that *interfaces* solves for us 
+  * They make it easier to reuse code between different parts of our codebase
 
+### Problems Without Interfaces
+
+**LOOK AT CODE**
 
