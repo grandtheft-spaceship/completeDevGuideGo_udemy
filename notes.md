@@ -776,3 +776,30 @@ func printGreeting(b bot) {
     * Since the `bot` `interface` allows other *types* defined in the program to ALSO be considered as *type* `bot`, all the other *objects* also have access to the `printGreeting()` function
 
 * **SUMMARY:** we use **interfaces** to *define a method set or function set* 
+
+### Rules of Interfaces
+```
+type bot interface { // 
+	getGreeting(string, int) (string, error)
+  getBotVersion() float
+  respondToUser(user) string
+}
+```
+  * This is just another example of an `interface` with added *argument type* list and *return type* list
+    * Note, we do not need to add variable names for the arguments or returns, only the *types*
+  * Additionally, we can add additional functionality 
+  * **NOTE:** Whatever we declare within the interface, a *type* must ALSO have ALL the same functionality and behavior to be qualified as the *type* declared in the `interface`
+
+* When creating an application, we can define **two different types**:
+  * **Concrete Types**
+    * Able to *create a value** directly; we are able to access it, change it, and create new copies of it, etc. 
+    * Examples:
+      * `map`
+      * `struct`
+      * `int`
+      * `string`
+      * `englishBot`
+  * **Interface Types**
+    * CANNOT create a value directly
+    * Example:
+      * `bot`
