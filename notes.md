@@ -828,3 +828,49 @@ type bot interface { //
     ```
     func Get(url string) (resp *Response, err error)
     ```
+
+### Reading The Docs
+```
+$ go run main.go
+&{200 OK 200 HTTP/1.1 1 1 map[X-Xss-Protection:[1; mode=block] X-Frame-Options:[SAMEORIGIN] Date:[Mon, 20 Nov 2017 23:16:28 GMT] Expires:[-1] Content-Type:[text/html; charset=ISO-8859-1] Server:[gws] Set-Cookie:[1P_JAR=2017-11-20-23; expires=Wed, 20-Dec-2017 23:16:28 GMT; path=/; domain=.google.com NID=117=vvz_hb_BAlYaMJQvdKrv345Wb_BAQ9L4-zrEeZkEmeXc3prQBNssPqwfVkxYoWM4fEaa8MJhQjiE44bcW5n93EPAv5N_yZkYMkNUHxsWPXIO3fNmuLru0eKzltHz_yyi; expires=Tue, 22-May-2018 23:16:28 GMT; path=/; domain=.google.com; HttpOnly] Cache-Control:[private, max-age=0] P3p:[CP="This is not a P3P policy! See g.co/p3phelp for more info."]] 0xc4200e26c0 -1 [] false true map[] 0xc4200fa100 <nil>}
+```
+
+  * Looking at this output for our program the way it is, we don't really see the **body** of the **response** that we were expecting
+    * The **body** is the **HTML** that renders the Google homepage
+
+* Looking at the docs we can click through what exactly the `*Response` is pointing to
+  ```
+  func Get(url string) (resp *Response, err error)
+  ```
+  * `*Response` is a **pointer** to a *response object*
+  * In the [docs](https://golang.org/pkg/net/http/#Response), we can see that the `*Response` pointer is pointing at a `Response` `struct`
+  ```
+  type Response struct {
+  ```
+  * Looking closer at the docs, we find that `Body` is of *type* `ReadCloser`
+  ```
+  // The Body is automatically dechunked if the server replied
+  // with a "chunked" Transfer-Encoding.
+  Body io.ReadCloser
+  ```
+  * When we click on [ReadCloser](https://golang.org/pkg/io/#ReadCloser), we find that it is an `interface`
+  ```
+  type ReadCloser interface {
+        Reader
+        Closer
+  }
+  ```
+  * NOTE: This `ReadCloser` interface looks very different than the format that we first saw when dealing with *interfaces*
+  
+  * By clicking on [Reader](https://golang.org/pkg/io/#Reader) and [Closer](https://golang.org/pkg/io/#Closer), we find out that they are also *interfaces* with syntax that looks familiar to what we've seen already
+```
+type Reader interface {
+        Read(p []byte) (n int, err error)
+}
+```
+```
+type Closer interface {
+        Close() error
+}
+```
+
