@@ -742,4 +742,13 @@ func printMap(c map[string]string) {
   * Used to represent a "thing" with a lot of different properties
   * **Value Type**
 
+## Interfaces
+### Purpose of Interfaces
+
+* We know that:
+  * Every value has a *type*
+  * Every function has to specify what type the *type of its arguments and/or its receiver* 
+* Does that mean:
+  * **Every function we ever write has to be rewritten to accomodate different types even if the logic is identical?**
+
 
