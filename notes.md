@@ -818,3 +818,13 @@ type bot interface { //
 * Interfaces are tough. Step #1 is understanding how to read them!
   * Understand how to read interfaces in the standard library. 
   * Writing your own interfaces is tough and requires practice/experience
+
+### The HTTP Package
+
+* To practice more with interfaces, we're going to write a small program that *makes an HTTP request* to `https://google.com` and then we'll *print that response* in the terminal
+* [net](https://golang.org/pkg/net/) package - Network Interface package 
+  * Includes [HTTP](https://golang.org/pkg/net/http/) package
+    * Under *type* [Response](https://golang.org/pkg/net/http/#Response), we can find the function [Get()](https://golang.org/pkg/net/http/#Get)
+    ```
+    func Get(url string) (resp *Response, err error)
+    ```
