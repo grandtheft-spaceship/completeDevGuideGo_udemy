@@ -803,3 +803,18 @@ type bot interface { //
     * CANNOT create a value directly
     * Example:
       * `bot`
+
+### Extra Interface Notes
+
+* Interfaces are NOT *generic types*
+  * Go DOES NOT support *generic types* unlike other languages
+* Interfaces are **implicit**
+  * We DON'T need to manually say that our custom types satsify an interface
+  * Go *implements* our custom types with an interfaces when everything is satisfied within the interface
+* Interfaces are a *contract* to help us *manage types*
+  * GARBAGE IN -> GARBAGE OUT
+    * If a custom type's implementation of a function is broken, then the interface will NOT help us
+  * Interfaces should NOT be used as a test for your code validity
+* Interfaces are tough. Step #1 is understanding how to read them!
+  * Understand how to read interfaces in the standard library. 
+  * Writing your own interfaces is tough and requires practice/experience
