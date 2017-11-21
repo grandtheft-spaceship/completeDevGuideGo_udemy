@@ -958,4 +958,39 @@ io.Copy(os.Stdout, resp.Body)
     * Terminal 
 * In order to use the `Writer` interface, we need to find something in the standard library that *implements* the `Writer` interface, and use that to log out all the data that we're receiving fromt the `Reader`
 
+### The io.Copy Function
+
+* In the [io](https://golang.org/pkg/io/) package, we can find the docs on the *type* [Writer](https://golang.org/pkg/io/#Writer)
+```
+type Writer interface {
+        Write(p []byte) (n int, err error)
+}
+```
+* Although similar to the `Reader` interface, the *byte slice* that is passed here to the `Write()` function is truly being used as a *source of input*
+  * The `Write()` receives the *byte slice*, takes the data within the *byte slice*, and sends all that information to some output channel
+
+* Looking more closely at the [docs](https://golang.org/pkg/io/#Copy) for the `io.Copy()`
+```
+(func Copy(dst Writer, src Reader) (written int64, err error)) // dst == destination
+```
+```
+io.Copy(os.Stdout, resp.Body)
+```
+* The `Copy()` expects the first argument to be some value that implements the `Writer` interface
+  * Remember, the `Writer` interface can be thought of something that is taking data and sending it outside of our application
+* The `Copy()` also expects the second argument to be some value that implements the `Reader` interface
+* Essentially, the `Copy()` as being used to take some information from outside our application and write/copy it to some outside channel
+  * The `os.Stdnout` is simply a value that implements the `Writer` interface
+    * `os.Stdout` is a *value* that is exported by the `os` package and it is of *type* `*File`
+    * `File` has a function called `Write()`
+      * Therefore it impements the `Writer` interface
+
+### The Implemenatation of io.Copy
+
+* In VSCode specifically, we can click on functions using **CMD + click** and get to the source code for that function
+
+
+
+
+
 
