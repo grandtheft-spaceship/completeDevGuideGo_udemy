@@ -935,5 +935,27 @@ $ go run main.go
 ```
 * **NOTE:** In reality, we don't need to really create the *byte slice* in this way, Go does have some helper functions to implement the `Read()` function a little bit easier
 
+### The Writer Interface
+**INSTEAD OF WRITING OUR CODE LIKE THIS**
+```
+bs := make([]byte, 99999)
+resp.Body.Read(bs)
+fmt.Println(string(bs))
+```
+**THIS ONE-LINER DOES THE SAME THING**
+```
+io.Copy(os.Stdout, resp.Body)
+```
+* The `Writer` `interface` is used to take some information from within our program and send that data out to some form/channel/method of output 
+* For example:
+  * We take a *byte slice* 
+  * Pass it to a *value that implements the* `Writer` *interface*
+  * The `Writer` interface is essentially describing something that can take info and send it outside of our program 
+  * Sources of Outputs:
+    * Outgoing HTTP request
+    * Text file on a hard drive
+    * Image file on a hard drive
+    * Terminal 
+* In order to use the `Writer` interface, we need to find something in the standard library that *implements* the `Writer` interface, and use that to log out all the data that we're receiving fromt the `Reader`
 
 
