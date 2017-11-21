@@ -13,5 +13,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println(resp)
+	bs := make([]byte, 99999) // This is another implementation for creating a byte slice
+
+	resp.Body.Read(bs)
+	fmt.Println(string(bs))
 }

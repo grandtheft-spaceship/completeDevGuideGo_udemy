@@ -896,3 +896,44 @@ type ReadCloser interface {
 ### Interface Review
 
 * In general, we use *interfaces* because in some conditions, they allow us to reuse some code 
+
+### The Reader Interface
+
+* The `Reader` `interface` is used to solve the issue of handling different *types* of data input and their different return types - i.e. `[]string`, `int`, `float64`, `jpeg`, etc. - that all have similar functionality
+* So, no matter what the *source of input* is, the `Reader` interface allows us to handle that input without having to write custom functions to handle the different *types* and return the output as a *byte slice*
+
+### More on the Reader Interface
+```
+type Reader interface {
+        Read(p []byte) (n int, err error)
+}
+```
+* In the background of the `Reader` interface, the `Read()` function will be given a *byte slice* as an argument and then the `Read()` will inject some data into the *byte slice*
+  * This works because as we learned earlier, with *pointers*, if we pass a `slice` into a *function*, that function can freely modify the slice and the original slice gets updated
+* As for the two *return values* from the `Read()` function, the `int` value which gets returned is the **number of *bytes* that was read, or injected, into the slice** 
+  * The second return value is just another `error`
+
+### Working with the Read Function
+```
+bs := make([]byte, 99999)
+
+resp.Body.Read(bs)
+fmt.Println(string(bs))
+```
+* `make()`
+  * Built-in function in the Go standard library
+  * Takes an argument of a *type*
+  * If we are creating a `slice`, we can add a second argument of *type* `int`, to be the *number of elements, or empty spaces, we want in our `slice`
+  * The reason why initialize the *byte slice* with so many empty spaces is because the `Read` function is NOT set up to automatically resize the *byte slice* if it gets full; it will simply fill the *byte slice* until it reaches capacity
+
+* Next, we'll take the the `resp` struct, access the `Body` property - this is the value that *implements* the `Reader` `interface` - and access the `Read()` function
+* Then, we'll pass in our *byte slice* into the `Read()` function and the `Read()` should fill the `bs` with the HTML data
+* Remember, when we deal with *byte slices*, we can essentially think of them as a string, so we can use *type conversion* when printing out the output of `bs`
+```
+$ go run main.go
+<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage" lang="en"><head><meta content="Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for." name="description"><meta content="noodp" name="robots"><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><meta content="/images/branding/googleg/1x/googleg_standard_color..........
+```
+* **NOTE:** In reality, we don't need to really create the *byte slice* in this way, Go does have some helper functions to implement the `Read()` function a little bit easier
+
+
+
