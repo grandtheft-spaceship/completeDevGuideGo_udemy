@@ -873,4 +873,26 @@ type Closer interface {
         Close() error
 }
 ```
+### More Interface Syntax
+```
+type Response struct {
+  Status string
+  StatusCode int
+  Body io.ReadCloser
+}
+```
+  * If we specify an `interface` as a *value* inside of a `struct`, we're saying that the  `Body` field can have ANY value assigned to it AS LONG as it fulfills the `interface` `ReadCloser`
+    * By clicking through, we then find out that to fulfill the `interface`, we just need to define a `struct` that has the functions `Read()` and `Close()` that takes the same *types* of arguments and returns the same *types* of return-values
 
+```
+type ReadCloser interface {
+      Reader
+      Closer
+}
+```
+  * In Go, we can take **multiple interfaces** and assemble them together to create another `interface`
+    * Both `Reader` and `Closer` are *interfaces* 
+
+### Interface Review
+
+* In general, we use *interfaces* because in some conditions, they allow us to reuse some code 
