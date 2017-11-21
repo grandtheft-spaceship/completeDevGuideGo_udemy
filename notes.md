@@ -989,6 +989,30 @@ io.Copy(os.Stdout, resp.Body)
 
 * In VSCode specifically, we can click on functions using **CMD + click** and get to the source code for that function
 
+### A Custom Writer
+
+```
+type logWriter struct{}
+
+func main() {
+	resp, err := http.Get("http://google.com")
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+
+	lw := logWriter{}
+
+	io.Copy(lw, resp.Body)
+}
+
+func (logWriter) Write(bs []byte) (int, error) {
+	fmt.Println(string(bs))
+
+	return len(bs), nil
+}
+```
+
 
 
 
