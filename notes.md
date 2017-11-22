@@ -1067,8 +1067,66 @@ go checkLink(link)
   * **Child Go Routines** are created when we use the `go` keyword
     * These child Go Routines behave slightly different that the main Go Routine
 
+### Channels
 
+* NOTE: The `go` keyword is ONLY used in front of function calls
+* If we run our program the way it is right now, nothing will be logged out to the terminal
+* The **main Go Routine** is the single routine inside the program the controls when the program should exit or quit
+  * This means that the main Go Routine *exits the program* before the **child Go Routines** have a chance to complete
+* We can fix this issues using **channels**
+  * **Channels** are used to *communicate between different, running Go Routines**
+  * We'll use one channel to make sure the main Go Routine is aware of when each of the child Go Routines have been completed
+  * Channels are the ONLY way to communicate between different Go Routines
+  * We treat channels just like any other values in Go
+    * We create them essentially the same way we create a `struct`, a `slice`, an `int`, a `string`, etc. 
+    * Channels are also **typed**, just like any other variable
+      * This is referring to the *data* that is passed into the channel must all be the same *type*
 
+### Channel Implementation
+```
+	c := make(chan string)
+```
+  * Here, we making a new channel, `chan`, that will take data of type `string`
+  * Even though we are using the channel for *communication*, we still treat it as a *value*
+  * This means we need to update our code for us to pass in `c` as an argument to our `checkLink()`
+```
+  func checkLink(link string, c chan string)
+```
+  * When we defined `checkLink()` with the added argument:
+    * `c` represents the argument variable name
+    * `chan` says that the argument is a of type channel
+    * `string` refers to the type of data the channel will process
 
+* Sending data with Channels:
+```
+  channel <- 5
+```
+  * Send the value `5` into this channel
 
+```
+  myNumber <- channel
+```
+  * Wait for a value to be sent into the channel. When we get one, assign it to the variable `myNumber`
+
+```
+  fmt.Printlin(<- channel)
+```
+  * Wait for a value to be sent into the channel. When we get one, log it out immediately
+
+* NOTE: If the output we get in the terminal still runs only one `checkLink()` Go Routine before the program exited
+
+### Blocking Channels
+
+* When we executed our program, we only got one log statement before the program exited
+  * This is because *whenever we wait for a message to come through the channel, it is a blocking call*
+  * So, receiving messages from a channel is a **blocking line of code**
+
+### Receiving Messages
+```
+for i := 0; i < len(links); i++ { 
+		fmt.Println(<-c)
+	}
+```
+  * We use this `for` loop to listen for the messages from our channel up to the length of our `slice`
+  
 
