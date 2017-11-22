@@ -1128,5 +1128,9 @@ for i := 0; i < len(links); i++ {
 	}
 ```
   * We use this `for` loop to listen for the messages from our channel up to the length of our `slice`
-  
+
+### Repeating Routines
+
+* What is we want to conitually ping each link for than once until we get an `error`?
+
 

@@ -20,8 +20,8 @@ func main() {
 		go checkLink(link, c)
 	}
 
-	for i := 0; i < len(links); i++ {
-		fmt.Println(<-c)
+	for { // Infinite loop syntax
+		go checkLink(<-c, c) // `go` keyword is used here to continue pinging links until we get an error // <- c is a link and c represents a channel
 	}
 }
 
@@ -30,9 +30,9 @@ func checkLink(link string, c chan string) {
 
 	if err != nil {
 		fmt.Println(link, "might be down!")
-		c <- "Might be down I think" // Inputting data into the channel
-		return                       // This will exit out of the if statement
+		c <- link // Feeding each link into the channel
+		return    // This will exit out of the if statement
 	}
 	fmt.Println(link, "is up!")
-	c <- "Yup, it's up" // Inputting data into the channel
+	c <- link // Feeding each link into the channel
 }
