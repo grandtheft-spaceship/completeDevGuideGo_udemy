@@ -1022,6 +1022,52 @@ func (logWriter) Write(bs []byte) (int, error) {
 ### Printing Site Status
 ### Serial Link Checking
 
+* Right now, our program is working in a sequential/serial flow; we take a link, make a request, and wait for the response before moving onto the next link in the slice
+* Instead of this, we can try to create a more *parallel* solution
+  * We make a request to each link within our slice and print out the responses as soon as we receive them
+
+### Go Routines 
+
+* When we execute a Go program, we automatically create 1 *Go Routine*
+* A **Go Routine** can be thought of as something that exists inside of a running program, or **process**
+  * The Go Routine takes every line of code inside of the program and executes them one-by-one 
+* Inside of our program the `http.Get(link)` is referred to as a **blocking call**
+  * This is because this piece of code does take some time to execute
+  * While it is being executed, the *main Go Routine* cannot do anything else
+```
+go checkLink(link)
+```
+  * Here, in the updated version of the code, we added a new keyword `go`
+  * `go` - This keyword means to *run the function inside of a new **Go Routine**
+    * The *Go runtime* will automatically create a new Go Routine to run the `checkLink()`
+
+### Theory of Go Routines
+
+* A **Go Routine** can be thought of as something that executes lines of code, line-by-line, inside of a *function call*
+* Behind the scenes, in your local machine/operating system, there is something called the **Go Scheduler**
+  * The **Go Scheduler** works with *one CPU* on your local machine, even if you're running a dual-core machine
+  * So, even though we are *launching multiple Go Routines*, only one is being executed or running at any given time
+  * The purpose of the **Go Scheduler** is to *monitor the code that is running inside each of the Go Routines
+    * When the Scheduler detects that all the code inside of a Go Routine has been executed or it has reached a *blocking call*, it will *pause* the current Go Routine and move on to the next one in the chain
+      * The Scheduler runs one routine until it finishes or makes a blocking call
+  * By default, Go will attempt to use only one *CPU core* 
+    * If we override this setting - by letting Go use multiple CPU cores - each CPU core can *run one Go Routine at a time*
+    * So, the Go Scheduler will assign each CPU core a Go Routine and allow each CPU to run one Go routine each
+      * The Go Scheduler runs one thread on each "logical" core
+
+* **Concurrency is NOT parallelism** - a phrase that is often discussed in the Go community
+  * A program IS *concurrent* if it has the ability to *load up* multiple Go Routines at a time
+    * **Concurrency** - can have multiple threads executing code. If one thread blocks, another thread is picked up and worked on
+    * This refers to a Go program only working with one CPU core
+  * **Parallelism** can only be achieved by working with *multiple CPU cores* on a machine
+    * Multiple threads *executed* at the exact same time. Requires multiple CPUs
+
+* When running a program:
+  * The **main Go Routine** is created when the *program is launched*
+  * **Child Go Routines** are created when we use the `go` keyword
+    * These child Go Routines behave slightly different that the main Go Routine
+
+
 
 
 
