@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -26,7 +27,10 @@ func main() {
 
 	// Another syntax format as the for loop above
 	for l := range c { // Wait for the channel to return some value; when it has, place the value into the variable `l`
-		go checkLink(l, c)
+		go func() { // Function Literal
+			time.Sleep(5 * time.Second) // Pauses current goroutine for 5 seconds
+			checkLink(l, c)
+		}() // This () at the end invokes the function
 	}
 }
 

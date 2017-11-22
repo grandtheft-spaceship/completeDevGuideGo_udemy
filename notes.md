@@ -1134,5 +1134,13 @@ for i := 0; i < len(links); i++ {
 * What is we want to conitually ping each link for than once until we get an `error`?
 
 ### Alternative Loop Syntax
+### Sleeping a Routine
 
+* We can use the [Sleep()](https://golang.org/pkg/time/#Sleep) to add a little pause between each request being logged to the terminal
+  * `Sleep()` pauses the current goroutine for at least the duration d. A negative or zero duration causes Sleep to return immediately.
 
+### Function Literals
+
+* A **function literal** in Go is similar to an *anonymous function in JavaScript* or a *lamda function in Ruby*
+  * It is an unnamed function that is used to wrap a chunk of code to use later
+  * You need to add `()` at the end of the function declaration to **invoke the function**
