@@ -1012,7 +1012,15 @@ func (logWriter) Write(bs []byte) (int, error) {
 	return len(bs), nil
 }
 ```
+## Channels and Go Routines
+### Website Status Checker
 
+* **Channels** and **Go Routines** are both structures inside of Go that are used to handle *concurrent programming*
+* We're going to write a small program that will take a list of websites and make an HTTP `GET` request to each of them
+  * The program will make sure the websites are up and responding to HTTP traffic
+
+### Printing Site Status
+### Serial Link Checking
 
 
 
