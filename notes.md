@@ -1133,4 +1133,6 @@ for i := 0; i < len(links); i++ {
 
 * What is we want to conitually ping each link for than once until we get an `error`?
 
+### Alternative Loop Syntax
+
 

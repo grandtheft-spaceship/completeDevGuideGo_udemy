@@ -20,8 +20,13 @@ func main() {
 		go checkLink(link, c)
 	}
 
-	for { // Infinite loop syntax
-		go checkLink(<-c, c) // `go` keyword is used here to continue pinging links until we get an error // <- c is a link and c represents a channel
+	// for { // Infinite loop syntax
+	// 	go checkLink(<-c, c) // `go` keyword is used here to continue pinging links until we get an error // <- c is a link and c represents a channel
+	// }
+
+	// Another syntax format as the for loop above
+	for l := range c { // Wait for the channel to return some value; when it has, place the value into the variable `l`
+		go checkLink(l, c)
 	}
 }
 
