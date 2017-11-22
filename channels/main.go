@@ -27,10 +27,11 @@ func main() {
 
 	// Another syntax format as the for loop above
 	for l := range c { // Wait for the channel to return some value; when it has, place the value into the variable `l`
-		go func() { // Function Literal
+		go func(link string) { // Function Literal // passing in `link` will update the value of `link`
 			time.Sleep(5 * time.Second) // Pauses current goroutine for 5 seconds
-			checkLink(l, c)
-		}() // This () at the end invokes the function
+			// checkLink(l, c) // We get a warning here because of what we learned about pointers and RAM memory / pass-by value in Go
+			checkLink(link, c)
+		}(l) // This () at the end invokes the function // passing in `l` will update the value of `link`
 	}
 }
 
