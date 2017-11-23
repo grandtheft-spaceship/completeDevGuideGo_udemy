@@ -2,7 +2,7 @@
 
 ## Environment Setup
 
-1. Install [Go](https://goland.org/dl/) - *Runtime to build and execute Go programs*
+1. Install [Go](https://golang.org/dl/) - *Runtime to build and execute Go programs*
 2. Install [VSCode](https://code.visualstudio.com/) - *Code editor with one of the best Go integrations*
 3. Confirgure VSCode - *Install Golang extension*
 4. Write Code!
