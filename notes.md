@@ -2,8 +2,8 @@
 
 ## Environment Setup
 
-1. Install [Go]('https://goland.org/dl/') - *Runtime to build and execute Go programs*
-2. Install [VSCode]('https://code.visualstudio.com/') - *Code editor with one of the best Go integrations*
+1. Install [Go](https://goland.org/dl/) - *Runtime to build and execute Go programs*
+2. Install [VSCode](https://code.visualstudio.com/) - *Code editor with one of the best Go integrations*
 3. Confirgure VSCode - *Install Golang extension*
 4. Write Code!
 
@@ -49,7 +49,7 @@
   * By default, the `main` package the we create has NO access to the standard, default packages included with Go
     * To gain access to the other packages from within our package, we use the `import` statement to form a link between the packages
     * We can also `import` packages that are not a part of the default, standard library; packages authored by a 3rd party
-      * Link to documentation regarding Go's standard library [packages]('https://golang.org/pkg')
+      * Link to documentation regarding Go's standard library [packages](https://golang.org/pkg)
 4. What's that `func` thing?
   * `func` is short for function
     * They work very similarly to functions in other programming languages
@@ -60,7 +60,7 @@
     * `func main() {}` - Declare functions, tell Go to do things
 
 **NOTE:**
-  * You can access course diagrams [here]('https://github.com/StephenGrider/GoCasts/tree/master/diagrams')
+  * You can access course diagrams [here](https://github.com/StephenGrider/GoCasts/tree/master/diagrams)
     * Open the folder containing the set of diagrams you want to edit
     * Click on the ‘.xml’ file
     * Click the ‘raw’ button
@@ -333,8 +333,8 @@ hand, remainingCards := deal(cards, 5)
 
 * `saveToFile()` is a function where we are going to save a copy of the current deck to our local hardDrive
 * `newDeckFromFile()` is a function that will load the file saved on the hard drive and create a new deck
-* Whenever we want to work with the underlying hardware or operating system that our program is running on, it's best to make use of Go's standard library of [packages]('https://golang.org/pkg/')
-* [ioutil]('https://golang.org/pkg/io/ioutil/') is a package that implements common operations for working with the hard drive on our local machine
+* Whenever we want to work with the underlying hardware or operating system that our program is running on, it's best to make use of Go's standard library of [packages](https://golang.org/pkg/)
+* [ioutil](https://golang.org/pkg/io/ioutil/) is a package that implements common operations for working with the hard drive on our local machine
   * The function we are specifically looking at is `WriteFile()`
   ```
   func WriteFile(filename string, data []byte, perm os.FileMode) error
@@ -351,7 +351,7 @@ hand, remainingCards := deal(cards, 5)
   ```
   * Whenever you hear the term *byte slice*, you can automatically think of *string*
   * Every element in the *byte slice* refers to an **ascii character code** 
-  * [ASCII]('http://www.asciitable.com/')
+  * [ASCII](http://www.asciitable.com/)
 
 ### Deck to String
 
@@ -367,7 +367,7 @@ hand, remainingCards := deal(cards, 5)
 
 ### Joining a Slice of Strings
 
-* To combine our deck into a single string, we can use the [`Join()`]('https://golang.org/pkg/strings/#Join') function built into the standard library
+* To combine our deck into a single string, we can use the [`Join()`](https://golang.org/pkg/strings/#Join) function built into the standard library
   * To use the `Join()` function, you first need to `import` the strings package
   * **Syntax** for *importing* multiple packages
   ```
@@ -389,7 +389,7 @@ func (d deck) saveToFile(filename string) error {
 
 ### Reading From the Hard Drive
 
-* For our `newDeckFromFile()` function, we are going to use the [`ReadFile()`]('https://golang.org/pkg/io/ioutil/#example_ReadFile') function from the `ioutil` standard libary package
+* For our `newDeckFromFile()` function, we are going to use the [`ReadFile()`](https://golang.org/pkg/io/ioutil/#example_ReadFile) function from the `ioutil` standard libary package
   * We want to be able to specify the name of the file to open
   * We are going to take the *byte slice* and split the elements from a single string back into a `deck`
 * The `error` object is a value of *type* `error`
